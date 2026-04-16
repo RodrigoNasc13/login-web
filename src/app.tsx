@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { Login } from './pages/login';
+import { Login } from './pages/Login';
 import { PrivateRoute } from './routes/PrivateRoute';
 
 export function App() {
