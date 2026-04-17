@@ -29,6 +29,9 @@ export function Root({
         withError &&
           'border-red-500 focus-within:border-red-500 focus-within:shadow-[0_2px_15px_-3px_rgba(239,68,68,0.2)]',
 
+        !withError &&
+          'focus-secondary border-secondary focus-within:border-primary',
+
         className,
       )}
     >
