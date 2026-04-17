@@ -1,7 +1,6 @@
-﻿import { Eye, Lock, Mail, Wallet } from 'lucide-react';
+﻿import { Wallet } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Button } from '../components/Button';
-import * as Input from '../components/input/Index';
+import { LoginForm } from '../features/login/LoginForm';
 
 export function Login() {
   return (
@@ -55,55 +54,7 @@ export function Login() {
             </p>
           </header>
 
-          <form className="space-y-8">
-            <div className="group space-y-2">
-              <Input.Label htmlFor="email">Email address</Input.Label>
-
-              <Input.Root>
-                <Input.Prefix>
-                  <Mail className="h-5 w-5" />
-                </Input.Prefix>
-                <Input.Control
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="name@company.com"
-                />
-              </Input.Root>
-            </div>
-
-            <div className="group space-y-2">
-              <div className="flex items-center justify-between px-1">
-                <Input.Label htmlFor="password">Password</Input.Label>
-                <Link
-                  to="/"
-                  className="mb-2 font-medium text-secondary text-sm transition-colors hover:text-primary-dim"
-                >
-                  Forgot your password?
-                </Link>
-              </div>
-
-              <Input.Root>
-                <Input.Prefix>
-                  <Lock className="h-5 w-5" />
-                </Input.Prefix>
-                <Input.Control
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="••••••••"
-                />
-                <button
-                  type="button"
-                  className="cursor-pointer pr-2 text-outline transition-colors hover:text-white"
-                >
-                  <Eye className="h-5 w-5" />
-                </button>
-              </Input.Root>
-            </div>
-
-            <Button className="mx-auto w-full">Authorize Access</Button>
-          </form>
+          <LoginForm />
 
           <footer className="pt-4 text-center">
             <p className="text-sm text-white-variant">
