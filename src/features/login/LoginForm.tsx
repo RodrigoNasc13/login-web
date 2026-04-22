@@ -2,11 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeClosed, Loader, Lock, Mail } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button';
 import { ErrorField } from '../../components/ErrorField';
 import * as Input from '../../components/input/Index';
-import { useLogin } from './api/useLogin';
+import { useLogin } from './api/use-login';
 import { type LoginFormData, loginFormSchema } from './shemas/login-form-shema';
 
 export function LoginForm() {
@@ -23,11 +22,15 @@ export function LoginForm() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   function handleLogin(data: LoginFormData) {
-    mutate(data);
+    mutate(data, {
+      onSuccess: () => {
+        window.location.href = '/dashboard';
+      },
+    });
   }
 
   return (
-    <form className="space-y-8" onSubmit={handleSubmit(handleLogin)}>
+    <form className="space-y-6" onSubmit={handleSubmit(handleLogin)}>
       <div className="group space-y-2">
         <Input.Label htmlFor="email">Email address</Input.Label>
 
@@ -47,15 +50,7 @@ export function LoginForm() {
       </div>
 
       <div className="group space-y-2">
-        <div className="flex items-center justify-between px-1">
-          <Input.Label htmlFor="password">Password</Input.Label>
-          <Link
-            to="/"
-            className="mb-2 font-medium text-secondary text-sm transition-colors hover:text-primary-dim"
-          >
-            Forgot your password?
-          </Link>
-        </div>
+        <Input.Label htmlFor="password">Password</Input.Label>
 
         <Input.Root withError={!!formState.errors.password}>
           <Input.Prefix>
