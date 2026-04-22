@@ -4,7 +4,7 @@ const buttonVariants = tv({
   base: 'flex items-center justify-center gap-2 rounded-xl font-headline font-bold transition-all cursor-pointer active:scale-[0.98]',
 
   variants: {
-    intent: {
+    variant: {
       primary:
         'bg-gradient-to-r from-violet-600 via-violet-500 to-indigo-400 shadow-[0_0px_15px_rgba(139,92,246,0.3)] hover:from-violet-500 hover:via-violet-400 hover:to-indigo-400 transform hover:-translate-y-0.5 hover:shadow-primary/40 hover:scale-[1.02]',
       secondary:
@@ -21,7 +21,7 @@ const buttonVariants = tv({
   },
 
   defaultVariants: {
-    intent: 'primary',
+    variant: 'primary',
     size: 'lg',
     disabled: false,
   },
@@ -31,7 +31,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants>;
 
 export function Button({
-  intent,
+  variant,
   size,
   disabled,
   className,
@@ -40,7 +40,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={buttonVariants({ intent, size, disabled, class: className })}
+      className={buttonVariants({ variant, size, disabled, class: className })}
       disabled={disabled}
       {...props}
     >

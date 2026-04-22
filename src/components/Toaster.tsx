@@ -5,6 +5,7 @@ export function GlobalToaster() {
     <Toaster
       position="top-right"
       toastOptions={{
+        duration: 6000,
         style: {
           background: '#24252d',
           color: '#fff',
