@@ -6,7 +6,10 @@ import { Button } from '../../components/Button';
 import { ErrorField } from '../../components/ErrorField';
 import * as Input from '../../components/input/Index';
 import { useLogin } from './api/use-login';
-import { type LoginFormData, loginFormSchema } from './shemas/login-form-shema';
+import {
+  type LoginFormData,
+  loginFormSchema,
+} from './schemas/login-form-schema';
 
 export function LoginForm() {
   const { register, formState, handleSubmit } = useForm<LoginFormData>({
@@ -24,7 +27,7 @@ export function LoginForm() {
   function handleLogin(data: LoginFormData) {
     mutate(data, {
       onSuccess: () => {
-        window.location.href = '/dashboard';
+        window.location.href = '/dashboard/admin';
       },
     });
   }

@@ -3,7 +3,7 @@ import type { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 import { api } from '../../../api/api';
 import type { StandErrorResponse } from '../../../types/api';
-import type { RegisterFormData } from '../shemas/register-form-shema';
+import type { RegisterFormData } from '../schemas/register-form-schema';
 
 type RegisterResponse = {
   user: {

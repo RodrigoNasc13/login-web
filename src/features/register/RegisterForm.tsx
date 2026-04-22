@@ -9,7 +9,7 @@ import { useRegister } from './api/use-register';
 import {
   type RegisterFormData,
   registerFormSchema,
-} from './shemas/register-form-shema';
+} from './schemas/register-form-schema';
 
 interface RegisterFormProps {
   setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
