@@ -16,11 +16,3 @@
   --font-body: 'Inter', sans-serif;
   --font-label: 'Inter', sans-serif;
 }
-
-@layer utilities {
-  .glass-card {
-    background: rgba(24, 25, 32, 0.4);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-}
