@@ -16,7 +16,7 @@ interface RegisterFormProps {
 }
 
 export function RegisterForm({ setIsLogin }: RegisterFormProps) {
-  const { register, formState, handleSubmit, watch } =
+  const { register, formState, handleSubmit, watch, reset } =
     useForm<RegisterFormData>({
       resolver: zodResolver(registerFormSchema),
       defaultValues: {
@@ -38,6 +38,11 @@ export function RegisterForm({ setIsLogin }: RegisterFormProps) {
   function handleRegister(data: RegisterFormData) {
     mutate(data, {
       onSuccess: () => {
+        reset({
+          email: '',
+          name: '',
+          password: '',
+        });
         setIsLogin(true);
       },
     });
