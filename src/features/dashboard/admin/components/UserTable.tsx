@@ -1,38 +1,9 @@
-import type { ColumnDef } from '@tanstack/react-table';
+import type { ColumnDef, PaginationState } from '@tanstack/react-table';
 import { Edit2, Trash2 } from 'lucide-react';
-import { DataTable } from '../../../components/DataTable';
-
-type User = {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-  status: 'Active' | 'Inactive';
-};
-
-const mockUsers: User[] = [
-  {
-    id: 1,
-    name: 'Sarah Jenkins',
-    email: 'sarah.j@saving4you.com',
-    role: 'Administrator',
-    status: 'Active',
-  },
-  {
-    id: 2,
-    name: 'Michael Chen',
-    email: 'm.chen@saving4you.com',
-    role: 'Wealth Advisor',
-    status: 'Active',
-  },
-  {
-    id: 3,
-    name: 'Elena Rodriguez',
-    email: 'elena.r@saving4you.com',
-    role: 'Client Support',
-    status: 'Inactive',
-  },
-];
+import { useState } from 'react';
+import { DataTable } from '../../../../components/DataTable';
+import type { User } from '../../../../types/user';
+import { useGetAdminUsers } from '../api/get-admin-users';
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -63,11 +34,11 @@ export const columns: ColumnDef<User>[] = [
     ),
   },
   {
-    accessorKey: 'status',
-    header: 'Status',
+    accessorKey: 'active',
+    header: 'Active',
     cell: ({ row }) => {
-      const status = row.getValue('status') as string;
-      const isActive = status === 'Active';
+      const isActive = row.getValue('active');
+
       return (
         <span
           className={
@@ -76,7 +47,7 @@ export const columns: ColumnDef<User>[] = [
               : 'inline-flex items-center rounded-full bg-default-gray/50 px-2.5 py-1 font-medium text-slate-400 text-xs'
           }
         >
-          {status}
+          {isActive ? 'Active' : 'Inactive'}
         </span>
       );
     },
@@ -108,5 +79,21 @@ export const columns: ColumnDef<User>[] = [
 ];
 
 export function UserTable() {
-  return <DataTable columns={columns} data={mockUsers} />;
+  const [pagination, _setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+
+  const { data, isLoading } = useGetAdminUsers(
+    pagination.pageIndex,
+    pagination.pageSize,
+  );
+
+  return (
+    <DataTable
+      columns={columns}
+      data={data?.content ?? []}
+      isLoading={isLoading}
+    />
+  );
 }

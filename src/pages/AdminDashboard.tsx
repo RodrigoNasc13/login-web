@@ -1,7 +1,7 @@
 import { Info, Plus } from 'lucide-react';
 import { Button } from '../components/Button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../components/Tooltip';
-import { UserTable } from '../features/dashboard/admin/UserTable';
+import { UserTable } from '../features/dashboard/admin/components/UserTable';
 
 export function AdminDashboard() {
   return (
