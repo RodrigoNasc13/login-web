@@ -29,7 +29,7 @@ export function PrivateRoute() {
           <Topbar />
 
           <main className="relative flex-1 overflow-y-auto bg-[radial-gradient(ellipse_at_top_right,var(--tw-gradient-stops))] from-default-gray/50 via-obsidian to-obsidian md:pt-0">
-            <Outlet />
+            <Outlet context={data} />
           </main>
         </SidebarInset>
       </div>
