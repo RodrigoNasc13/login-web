@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { Auth } from './pages/Auth';
+import { UserDashboard } from './pages/UserDashboard';
 import { PrivateRoute } from './routes/PrivateRoute';
 
 export function App() {
@@ -10,7 +11,8 @@ export function App() {
         <Route path="/login" element={<Auth />} />
 
         <Route element={<PrivateRoute />}>
-          <Route path="/dashboard/admin" element={<AdminDashboard />} />
+          <Route path="/dashboard/admins" element={<AdminDashboard />} />
+          <Route path="/dashboard/users" element={<UserDashboard />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/login" replace />} />

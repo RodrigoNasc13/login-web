@@ -1,7 +1,7 @@
 import { Info, Plus } from 'lucide-react';
 import { Button } from '../components/Button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../components/Tooltip';
-import { UserTable } from '../features/dashboard/admin/components/UserTable';
+import { AdminUserTable } from '../features/dashboard/admin/components/AdminUserTable';
 
 export function AdminDashboard() {
   return (
@@ -18,7 +18,7 @@ export function AdminDashboard() {
                 <Info className="text-secondary" />
               </TooltipTrigger>
               <TooltipContent side="right" className="text-white">
-                Manage your admin settings, view user statistics, and configure
+                Manage your admin settings, view admin statistics, and configure
                 permissions.
               </TooltipContent>
             </Tooltip>
@@ -26,11 +26,11 @@ export function AdminDashboard() {
 
           <Button className="flex transform items-center space-x-2 rounded-full bg-linear-to-br from-primary to-tertiary px-6 py-3 font-bold font-headline text-obsidian shadow-[0_0_20px_-5px_var(--color-primary)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_var(--color-primary)] active:scale-95">
             <Plus className="h-5 w-5 stroke-[2.5]" />
-            <span>Create User</span>
+            <span>Create admin</span>
           </Button>
         </div>
 
-        <UserTable />
+        <AdminUserTable />
       </main>
     </div>
   );
