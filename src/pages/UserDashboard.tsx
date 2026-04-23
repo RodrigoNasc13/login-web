@@ -1,9 +1,13 @@
 import { Info, Plus } from 'lucide-react';
+import { useState } from 'react';
 import { Button } from '../components/Button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../components/Tooltip';
+import { CreateUserDialog } from '../features/dashboard/user/components/CreateUserDialog';
 import { UserTable } from '../features/dashboard/user/components/UserTable';
 
 export function UserDashboard() {
+  const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
+
   return (
     <div className="flex h-screen w-full overflow-hidden bg-obsidian px-4 font-body text-white md:px-0">
       <main className="relative mx-auto flex max-w-3xl flex-1 flex-col gap-8 overflow-y-auto py-4 md:pt-20 2xl:max-w-7xl">
@@ -24,11 +28,21 @@ export function UserDashboard() {
             </Tooltip>
           </div>
 
-          <Button className="flex transform items-center space-x-2 rounded-full bg-linear-to-br from-primary to-tertiary px-6 py-3 font-bold font-headline text-obsidian shadow-[0_0_20px_-5px_var(--color-primary)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_var(--color-primary)] active:scale-95">
+          <Button
+            onClick={() => {
+              setIsRegisterDialogOpen(true);
+            }}
+            className="flex transform items-center space-x-2 rounded-full bg-linear-to-br from-primary to-tertiary px-6 py-3 font-bold font-headline text-obsidian shadow-[0_0_20px_-5px_var(--color-primary)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_var(--color-primary)] active:scale-95"
+          >
             <Plus className="h-5 w-5 stroke-[2.5]" />
             <span>Create user</span>
           </Button>
         </div>
+
+        <CreateUserDialog
+          isRegisterDialogOpen={isRegisterDialogOpen}
+          setIsRegisterDialogOpen={setIsRegisterDialogOpen}
+        />
 
         <UserTable />
       </main>

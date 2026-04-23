@@ -12,7 +12,7 @@ async function registerUser(data: RegisterFormData): Promise<RegisterResponse> {
   return response.data;
 }
 
-export function useRegister() {
+export function useRegisterUser() {
   const queryClient = useQueryClient();
 
   return useMutation<
@@ -21,12 +21,9 @@ export function useRegister() {
     RegisterFormData
   >({
     mutationFn: registerUser,
-    onSuccess: (data) => {
-      toast.success(
-        `Congratulations ${data.user.name}! Now make login to your account`,
-      );
-
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users', 'active', 'count'] });
+      queryClient.invalidateQueries({ queryKey: ['user', 'users'] });
     },
     onError: (error) => {
       toast.error(
