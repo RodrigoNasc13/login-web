@@ -1,19 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../../../api/api';
-
-interface GetMeResponse {
-  id: string;
-  name: string;
-  email: string;
-  createdAt: string;
-  updatedAt: string;
-  active: boolean;
-}
+import type { User } from '../../../types/user';
 
 export function useGetMe() {
   return useQuery({
     queryKey: ['auth', 'me'],
-    queryFn: async (): Promise<GetMeResponse> => {
+    queryFn: async (): Promise<User> => {
       const response = await api.get('/users/me');
       return response.data;
     },

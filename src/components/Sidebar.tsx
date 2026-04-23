@@ -90,7 +90,17 @@ function SidebarProvider({
 
   const [openMobile, setOpenMobile] = React.useState(false);
 
-  const [openState, setOpenState] = React.useState(defaultOpen);
+  const [openState, setOpenState] = React.useState(() => {
+    if (typeof document !== 'undefined') {
+      const cookie = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith(`${SIDEBAR_COOKIE_NAME}=`));
+      if (cookie) {
+        return cookie.split('=')[1] === 'true';
+      }
+    }
+    return defaultOpen;
+  });
   const open = openProp ?? openState;
   const setOpen = React.useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
@@ -201,7 +211,7 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) border-r-0 bg-slate-950/50 p-0 text-sidebar-foreground backdrop-blur-md [&>button]:hidden"
+          className="w-(--sidebar-width) border-r-0 bg-slate-950/60 p-0 text-sidebar-foreground backdrop-blur-md [&>button]:hidden"
           style={
             {
               '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
