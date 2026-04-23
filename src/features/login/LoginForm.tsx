@@ -27,7 +27,7 @@ export function LoginForm() {
   function handleLogin(data: LoginFormData) {
     mutate(data, {
       onSuccess: () => {
-        window.location.href = '/dashboard/admin';
+        window.location.href = '/dashboard/admins';
       },
     });
   }

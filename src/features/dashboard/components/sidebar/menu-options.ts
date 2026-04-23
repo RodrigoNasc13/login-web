@@ -17,7 +17,7 @@ export const menuOptions: MenuGroup[] = [
     items: [
       {
         label: 'Admin',
-        path: '/dashboard/admin',
+        path: '/dashboard/admins',
         icon: ShieldUser,
       },
       {

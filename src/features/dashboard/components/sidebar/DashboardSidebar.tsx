@@ -1,5 +1,6 @@
-import { PiggyBankIcon } from 'lucide-react';
+import { LogOut, PiggyBankIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { Button } from '../../../../components/Button';
 import {
   Sidebar,
   SidebarContent,
@@ -12,10 +13,13 @@ import {
   SidebarMenuItem,
   SidebarTrigger,
 } from '../../../../components/Sidebar';
+import { useLogout } from '../../../auth/api/use-logout';
 import { menuOptions } from './menu-options';
 
 export function DashboardSidebar() {
   const location = useLocation();
+
+  const { mutate: doLogout, isPending } = useLogout();
 
   return (
     <Sidebar
@@ -28,7 +32,7 @@ export function DashboardSidebar() {
             <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-outline-variant/15 bg-surface-container-high group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:w-8">
               <PiggyBankIcon className="text-purple-400 group-data-[collapsible=icon]:h-5 group-data-[collapsible=icon]:w-5" />
             </div>
-            <div className="group-data-[collapsible=icon]:hidden">
+            <div className="flex flex-col gap-2 leading-none group-data-[collapsible=icon]:hidden">
               <h1 className="font-black font-headline text-2xl text-white leading-none tracking-tighter">
                 Saving
                 <span className="text-secondary">4You</span>
@@ -90,17 +94,20 @@ export function DashboardSidebar() {
         <SidebarMenu className="group-data-[collapsible=icon]:items-center">
           <SidebarMenuItem>
             <SidebarMenuButton asChild tooltip="Logout">
-              <a
-                href="/logout"
+              <Button
+                variant="ghost"
+                disabled={isPending}
                 className="group-data-[collapsible=icon]:h-10 group-data-[collapsible=icon]:w-10 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0!"
+                onClick={(e) => {
+                  e.preventDefault();
+                  doLogout();
+                }}
               >
-                <span className="material-symbols-outlined shrink-0 text-[1.25rem]">
-                  logout
-                </span>
+                <LogOut className="shrink-0 text-[1.25rem]" />
                 <span className="group-data-[collapsible=icon]:hidden">
                   Logout
                 </span>
-              </a>
+              </Button>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
