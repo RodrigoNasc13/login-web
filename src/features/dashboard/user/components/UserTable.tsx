@@ -3,7 +3,7 @@ import { Edit2, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { DataTable } from '../../../../components/DataTable';
 import type { User } from '../../../../types/user';
-import { useGetAdminUsers } from '../api/get-admin-users';
+import { useGetUsers } from '../api/get-users-list';
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -84,7 +84,7 @@ export function UserTable() {
     pageSize: 10,
   });
 
-  const { data, isLoading } = useGetAdminUsers(
+  const { data, isLoading } = useGetUsers(
     pagination.pageIndex,
     pagination.pageSize,
   );
