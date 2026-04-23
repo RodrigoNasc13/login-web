@@ -29,10 +29,9 @@ export function DashboardSidebar() {
               <PiggyBankIcon className="text-purple-400 group-data-[collapsible=icon]:h-5 group-data-[collapsible=icon]:w-5" />
             </div>
             <div className="group-data-[collapsible=icon]:hidden">
-              <h1 className="font-black font-headline text-2xl text-purple-400 leading-none tracking-tighter">
+              <h1 className="font-black font-headline text-2xl leading-none tracking-tighter">
                 Saving
-                <span className="text-secondary">4</span>
-                You
+                <span className="text-secondary">4You</span>
               </h1>
               <p className="font-label text-slate-500 text-xs">
                 Wealth Management
