@@ -89,14 +89,16 @@ export function RegisterForm({ setIsLogin }: RegisterFormProps) {
             <Lock className="h-5 w-5" />
           </Input.Prefix>
           <Input.Control
+            className="relative"
             id="password"
             type={isPasswordVisible ? 'text' : 'password'}
             placeholder="••••••••"
             {...register('password')}
           />
-          <button
+          <Button
+            variant="ghost"
             type="button"
-            className="cursor-pointer pr-2 text-outline transition-colors hover:text-white"
+            className="absolute right-2 cursor-pointer p-0 text-outline transition-colors hover:text-white"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
             {isPasswordVisible ? (
@@ -104,7 +106,7 @@ export function RegisterForm({ setIsLogin }: RegisterFormProps) {
             ) : (
               <Eye className="h-5 w-5" />
             )}
-          </button>
+          </Button>
         </Input.Root>
 
         {formState.errors.password && (

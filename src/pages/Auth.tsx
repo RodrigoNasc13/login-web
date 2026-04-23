@@ -21,7 +21,8 @@ export function Auth() {
                 <Wallet className="" />
               </div>
               <span className="font-extrabold font-headline text-2xl tracking-tight">
-                Saving4You
+                Saving
+                <strong className="text-secondary">4You</strong>
               </span>
             </div>
 
@@ -38,29 +39,31 @@ export function Auth() {
             </h1>
           </div>
 
-          <div className="">
-            <Card variant="glass" className="max-w-sm">
-              <CardHeader>
-                <CardTitle>Total users active</CardTitle>
-              </CardHeader>
+          {stats && (
+            <div>
+              <Card variant="glass" className="max-w-sm">
+                <CardHeader>
+                  <CardTitle>Total users active</CardTitle>
+                </CardHeader>
 
-              <CardContent>
-                <p className="font-extrabold text-4xl text-primary">
-                  {stats?.activeUsersCount}
-                </p>
-                {stats?.lastUserRegistrationDate && (
-                  <p className="mt-2 text-outline-variant text-sm">
-                    Atualizado há{' '}
-                    {isLoading ? (
-                      <Loader className="animate-spin" />
-                    ) : (
-                      formatLocalTime(stats?.lastUserRegistrationDate)
-                    )}
+                <CardContent>
+                  <p className="font-extrabold text-4xl text-primary">
+                    {stats?.activeUsersCount}
                   </p>
-                )}
-              </CardContent>
-            </Card>
-          </div>
+                  {stats?.lastUserRegistrationDate && (
+                    <p className="mt-2 text-outline-variant text-sm">
+                      Atualizado há{' '}
+                      {isLoading ? (
+                        <Loader className="animate-spin" />
+                      ) : (
+                        formatLocalTime(stats?.lastUserRegistrationDate)
+                      )}
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          )}
         </div>
 
         <div className="absolute -top-32 -right-32 z-0 size-152 rounded-full bg-primary/30 blur-[190px]" />
@@ -70,22 +73,23 @@ export function Auth() {
       <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-obsidian p-8 lg:w-1/2 lg:p-0">
         <div className="w-full overflow-hidden">
           <div
-            className={`flex w-[200%] items-center justify-center transition-transform duration-700 ease-in-out ${
+            className={`flex w-[200%] items-center justify-center gap-2 transition-transform duration-700 ease-in-out md:gap-0 ${
               isLogin ? 'translate-x-0' : '-translate-x-1/2'
             }`}
           >
             <div className="h-max w-1/2 shrink-0">
-              <div className="mb-8 flex items-center gap-2 lg:hidden">
+              <div className="mb-8 flex items-center justify-center gap-2 md:justify-start lg:hidden">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20">
                   <Wallet className="text-primary text-xl" />
                 </div>
                 <span className="font-bold font-headline text-white text-xl tracking-tight">
-                  Saving4You
+                  Saving
+                  <strong className="text-secondary">4You</strong>
                 </span>
               </div>
 
               <div className="mx-auto flex max-w-md flex-col gap-6 rounded-xl bg-outline/20 p-8">
-                <header className="mb-6 space-y-2">
+                <header className="mb-6 space-y-2 text-center md:text-left">
                   <h2 className="font-extrabold font-headline text-4xl text-white tracking-tight">
                     Welcome back
                   </h2>
@@ -112,17 +116,17 @@ export function Auth() {
             </div>
 
             <div className="w-1/2 shrink-0">
-              <div className="mb-8 flex items-center gap-2 lg:hidden">
+              <div className="mb-8 flex items-center justify-center gap-2 md:justify-start lg:hidden">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/20">
                   <Wallet className="text-primary text-xl" />
                 </div>
                 <span className="font-bold font-headline text-white text-xl tracking-tight">
-                  Saving4You
+                  Saving <strong className="text-secondary">4You</strong>
                 </span>
               </div>
 
               <div className="mx-auto flex max-w-lg flex-col gap-6 rounded-xl bg-outline/20 p-8">
-                <header className="mb-6 space-y-2">
+                <header className="mb-6 space-y-2 text-center md:text-left">
                   <h2 className="font-extrabold font-headline text-4xl text-white tracking-tight">
                     Construct your future now
                   </h2>
