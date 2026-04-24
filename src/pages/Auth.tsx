@@ -52,7 +52,7 @@ export function Auth() {
                   </p>
                   {stats?.lastUserRegistrationDate && (
                     <p className="mt-2 text-outline-variant text-sm">
-                      Atualizado há{' '}
+                      Updated in{' '}
                       {isLoading ? (
                         <Loader className="animate-spin" />
                       ) : (
