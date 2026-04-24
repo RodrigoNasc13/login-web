@@ -11,9 +11,14 @@ import { useGetAdminUsers } from '../api/get-admin-users-list';
 interface GetColumnsProps {
   onDelete: (user: User) => void;
   onEdit: (user: User) => void;
+  loginUser: User;
 }
 
-function getColumns({ onDelete, onEdit }: GetColumnsProps): ColumnDef<User>[] {
+function getColumns({
+  onDelete,
+  onEdit,
+  loginUser,
+}: GetColumnsProps): ColumnDef<User>[] {
   return [
     {
       accessorKey: 'user',
@@ -81,7 +86,7 @@ function getColumns({ onDelete, onEdit }: GetColumnsProps): ColumnDef<User>[] {
             </Button>
             <Button
               onClick={() => onDelete(user)}
-              disabled={user.role !== 'SUPER_ADMIN'}
+              disabled={loginUser.role !== 'SUPER_ADMIN'}
               variant="ghost"
               type="button"
               className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-default-gray hover:text-red-400"
@@ -96,7 +101,7 @@ function getColumns({ onDelete, onEdit }: GetColumnsProps): ColumnDef<User>[] {
   ];
 }
 
-export function AdminUserTable() {
+export function AdminUserTable({ loginUser }: { loginUser: User }) {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
@@ -120,8 +125,9 @@ export function AdminUserTable() {
       getColumns({
         onDelete: handleOpenDeleteDialog,
         onEdit: handleOpenEditDialog,
+        loginUser: loginUser,
       }),
-    [handleOpenDeleteDialog, handleOpenEditDialog],
+    [handleOpenDeleteDialog, handleOpenEditDialog, loginUser],
   );
 
   const { data, isLoading } = useGetAdminUsers(

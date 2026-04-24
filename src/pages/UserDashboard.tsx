@@ -1,12 +1,16 @@
 import { Info, Plus } from 'lucide-react';
 import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../components/Tooltip';
 import { CreateUserDialog } from '../features/dashboard/user/components/CreateUserDialog';
 import { UserTable } from '../features/dashboard/user/components/UserTable';
+import type { OutletContext } from '../types/outlet-context';
 
 export function UserDashboard() {
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
+
+  const { user } = useOutletContext<OutletContext>();
 
   return (
     <div className="flex w-full justify-center px-4 py-10 font-body text-white md:px-0">
@@ -39,7 +43,7 @@ export function UserDashboard() {
           </Button>
         </div>
 
-        <UserTable />
+        <UserTable loginUser={user} />
       </div>
 
       <CreateUserDialog

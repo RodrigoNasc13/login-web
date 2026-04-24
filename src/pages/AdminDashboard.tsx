@@ -50,7 +50,7 @@ export function AdminDashboard() {
           </Button>
         </div>
 
-        <AdminUserTable />
+        <AdminUserTable loginUser={user} />
       </div>
 
       <CreateAdminDialog
