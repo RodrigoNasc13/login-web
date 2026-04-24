@@ -35,8 +35,6 @@ export function DashboardSidebar({ user }: DashboardSidebarProps) {
   const displayName = user.name?.trim() || 'Usuário';
   const userInitial = displayName.charAt(0).toUpperCase();
 
-  console.log('User in DashboardSidebar:', user);
-
   return (
     <Sidebar
       collapsible="icon"
