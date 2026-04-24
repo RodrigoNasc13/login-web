@@ -70,7 +70,7 @@ export function Auth() {
         <div className="absolute -bottom-32 -left-32 z-0 size-152 rounded-full bg-tertiary/20 blur-[190px]" />
       </section>
 
-      <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-obsidian p-8 lg:w-1/2 lg:p-0">
+      <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-obsidian p-4 lg:w-1/2 lg:p-0">
         <div className="w-full overflow-hidden">
           <div
             className={`flex w-[200%] items-center justify-center gap-2 transition-transform duration-700 ease-in-out md:gap-0 ${
