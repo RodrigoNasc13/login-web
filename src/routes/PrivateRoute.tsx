@@ -22,13 +22,13 @@ export function PrivateRoute() {
 
   return (
     <SidebarProvider>
-      <div className="flex h-screen w-full overflow-hidden bg-obsidian font-body text-white">
+      <div className="flex h-screen w-full font-body text-white">
         <DashboardSidebar />
 
         <SidebarInset className="relative flex w-full flex-1 flex-col bg-transparent">
           <Topbar />
 
-          <main className="relative flex-1 overflow-y-auto bg-[radial-gradient(ellipse_at_top_right,var(--tw-gradient-stops))] from-default-gray/50 via-obsidian to-obsidian md:pt-0">
+          <main className="relative h-screen flex-1 bg-[radial-gradient(ellipse_at_top_right,var(--tw-gradient-stops))] bg-obsidian md:pt-0">
             <Outlet context={data} />
           </main>
         </SidebarInset>

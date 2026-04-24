@@ -1,5 +1,3 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
 import {
   Dialog,
   DialogContent,
@@ -8,10 +6,7 @@ import {
   DialogTitle,
 } from '../../../../components/Dialog';
 import { RegisterUserForm } from '../../../../components/forms/RegisterUserForm';
-import {
-  type RegisterFormData,
-  registerFormSchema,
-} from '../../../../components/forms/schemas/register-user-form-schema';
+import type { RegisterFormData } from '../../../../components/forms/schemas/register-user-form-schema';
 import { useRegisterAdmin } from '../api/use-register-admin';
 
 interface CreateAdminDialogProps {
@@ -23,27 +18,12 @@ export function CreateAdminDialog({
   setIsRegisterDialogOpen,
   isRegisterDialogOpen,
 }: CreateAdminDialogProps) {
-  const { reset } = useForm<RegisterFormData>({
-    resolver: zodResolver(registerFormSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-    },
-  });
-
   const { mutate, isPending, isError } = useRegisterAdmin();
 
   function handleRegister(data: RegisterFormData) {
     mutate(data, {
       onSuccess: () => {
         setIsRegisterDialogOpen(false);
-
-        reset({
-          email: '',
-          name: '',
-          password: '',
-        });
       },
     });
   }

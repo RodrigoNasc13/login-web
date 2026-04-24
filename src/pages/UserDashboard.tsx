@@ -9,10 +9,15 @@ export function UserDashboard() {
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-obsidian px-4 font-body text-white md:px-0">
-      <main className="relative mx-auto flex max-w-3xl flex-1 flex-col gap-8 overflow-y-auto py-4 md:pt-20 2xl:max-w-7xl">
-        <div className="flex flex-col items-center gap-4 md:flex-row md:items-start md:justify-between">
-          <div className="flex items-start justify-center gap-4">
+    <div className="flex h-full w-full items-center justify-center overflow-auto">
+      <CreateUserDialog
+        isRegisterDialogOpen={isRegisterDialogOpen}
+        setIsRegisterDialogOpen={setIsRegisterDialogOpen}
+      />
+
+      <div className="flex w-6xl flex-col gap-10">
+        <div className="flex justify-between">
+          <div className="flex gap-2">
             <h2 className="font-bold font-headline text-3xl text-white tracking-tight sm:text-4xl md:text-5xl">
               User Management
             </h2>
@@ -39,13 +44,8 @@ export function UserDashboard() {
           </Button>
         </div>
 
-        <CreateUserDialog
-          isRegisterDialogOpen={isRegisterDialogOpen}
-          setIsRegisterDialogOpen={setIsRegisterDialogOpen}
-        />
-
         <UserTable />
-      </main>
+      </div>
     </div>
   );
 }
