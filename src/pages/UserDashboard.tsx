@@ -9,15 +9,10 @@ export function UserDashboard() {
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
 
   return (
-    <div className="flex h-full w-full items-center justify-center overflow-auto">
-      <CreateUserDialog
-        isRegisterDialogOpen={isRegisterDialogOpen}
-        setIsRegisterDialogOpen={setIsRegisterDialogOpen}
-      />
-
-      <div className="flex w-6xl flex-col gap-10">
-        <div className="flex justify-between">
-          <div className="flex gap-2">
+    <div className="flex w-full justify-center px-4 py-10 font-body text-white md:px-0">
+      <div className="flex w-full max-w-4xl flex-col gap-8 2xl:max-w-7xl">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <div className="flex items-start justify-center gap-4">
             <h2 className="font-bold font-headline text-3xl text-white tracking-tight sm:text-4xl md:text-5xl">
               User Management
             </h2>
@@ -34,10 +29,10 @@ export function UserDashboard() {
           </div>
 
           <Button
+            className="flex transform items-center space-x-2 rounded-full bg-linear-to-br from-primary to-tertiary px-6 py-3 font-bold font-headline text-obsidian shadow-[0_0_20px_-5px_var(--color-primary)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_var(--color-primary)] active:scale-95"
             onClick={() => {
               setIsRegisterDialogOpen(true);
             }}
-            className="flex transform items-center space-x-2 rounded-full bg-linear-to-br from-primary to-tertiary px-6 py-3 font-bold font-headline text-obsidian shadow-[0_0_20px_-5px_var(--color-primary)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_var(--color-primary)] active:scale-95"
           >
             <Plus className="h-5 w-5 stroke-[2.5]" />
             <span>Create user</span>
@@ -46,6 +41,11 @@ export function UserDashboard() {
 
         <UserTable />
       </div>
+
+      <CreateUserDialog
+        isRegisterDialogOpen={isRegisterDialogOpen}
+        setIsRegisterDialogOpen={setIsRegisterDialogOpen}
+      />
     </div>
   );
 }
