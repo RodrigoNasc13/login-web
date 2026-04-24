@@ -1,4 +1,5 @@
 import { LogOut, PiggyBankIcon } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '../../../../components/Button';
 import {
@@ -13,13 +14,28 @@ import {
   SidebarMenuItem,
   SidebarTrigger,
 } from '../../../../components/Sidebar';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '../../../../components/Tooltip';
+import type { User } from '../../../../types/user';
 import { useLogout } from '../../../auth/api/use-logout';
 import { menuOptions } from './menu-options';
 
-export function DashboardSidebar() {
+interface DashboardSidebarProps {
+  user: User;
+}
+
+export function DashboardSidebar({ user }: DashboardSidebarProps) {
   const location = useLocation();
 
   const { mutate: doLogout, isPending } = useLogout();
+
+  const displayName = user.name?.trim() || 'Usuário';
+  const userInitial = displayName.charAt(0).toUpperCase();
+
+  console.log('User in DashboardSidebar:', user);
 
   return (
     <Sidebar
@@ -92,12 +108,31 @@ export function DashboardSidebar() {
 
       <SidebarFooter className="mt-auto px-6 pb-8 group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:pb-4">
         <SidebarMenu className="group-data-[collapsible=icon]:items-center">
-          <SidebarMenuItem>
+          <SidebarMenuItem className="flex items-center gap-4 group-data-[collapsible=icon]:flex-col group-data-[collapsible=icon]:justify-center">
+            <Tooltip>
+              <TooltipTrigger
+                onClick={() => {
+                  toast.success(
+                    `Hello, ${displayName}! You are logged in as ${user.role}.`,
+                  );
+                }}
+              >
+                <div>
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-0 bg-default-gray font-bold font-headline text-white">
+                    {userInitial}
+                  </div>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{displayName}</p>
+              </TooltipContent>
+            </Tooltip>
+
             <SidebarMenuButton asChild tooltip="Logout">
               <Button
                 variant="ghost"
                 disabled={isPending}
-                className="group-data-[collapsible=icon]:h-10 group-data-[collapsible=icon]:w-10 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0!"
+                className="w-min group-data-[collapsible=icon]:h-10 group-data-[collapsible=icon]:w-10 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0!"
                 onClick={(e) => {
                   e.preventDefault();
                   doLogout();

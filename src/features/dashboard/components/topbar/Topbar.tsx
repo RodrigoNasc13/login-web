@@ -5,7 +5,7 @@ export function Topbar() {
   const { toggleSidebar } = useSidebar();
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full shrink-0 items-center justify-between border-slate-800/60 border-b bg-slate-950/50 px-4 backdrop-blur-md md:hidden md:px-6">
+    <header className="sticky top-0 z-30 flex h-16 w-full shrink-0 items-center justify-between border-slate-800/60 border-b bg-slate-950 px-4 backdrop-blur-md md:hidden md:px-6">
       <div className="relative flex w-full items-center">
         <button
           type="button"
