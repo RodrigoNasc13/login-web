@@ -72,7 +72,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={twMerge(
-      'px-6 py-4 text-left align-middle font-headline font-semibold text-slate-400 text-xs uppercase tracking-wider [&:has([role=checkbox])]:pr-0',
+      'px-4 py-3 text-left align-middle font-headline font-semibold text-slate-400 text-xs uppercase tracking-wider [&:has([role=checkbox])]:pr-0',
       className,
     )}
     {...props}
@@ -87,7 +87,7 @@ const TableCell = React.forwardRef<
   <td
     ref={ref}
     className={twMerge(
-      'px-6 py-4 align-middle [&:has([role=checkbox])]:pr-0',
+      'px-4 py-2 align-middle [&:has([role=checkbox])]:pr-0',
       className,
     )}
     {...props}

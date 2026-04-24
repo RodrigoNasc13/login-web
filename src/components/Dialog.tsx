@@ -107,7 +107,7 @@ function DialogFooter({
     <div
       data-slot="dialog-footer"
       className={twMerge(
-        '-mx-6 mt-4 -mb-6 flex flex-col-reverse gap-3 rounded-b-2xl border-slate-800/60 border-t bg-slate-950/50 p-6 sm:flex-row sm:justify-end',
+        'flex flex-col items-center justify-center gap-4 md:flex-row',
         className,
       )}
       {...props}

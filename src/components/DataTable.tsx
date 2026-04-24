@@ -18,18 +18,50 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   isLoading?: boolean;
+  pageIndex?: number;
+  pageSize?: number;
+  totalElements?: number;
+  totalPages?: number;
+  onPreviousPage?: () => void;
+  onNextPage?: () => void;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   isLoading = false,
+  pageIndex,
+  pageSize,
+  totalElements,
+  totalPages,
+  onPreviousPage,
+  onNextPage,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  const hasPaginationInfo =
+    pageIndex !== undefined &&
+    pageSize !== undefined &&
+    totalElements !== undefined &&
+    totalPages !== undefined;
+
+  const safePageIndex = pageIndex ?? 0;
+  const safePageSize = pageSize ?? data.length;
+  const safeTotalElements = totalElements ?? data.length;
+
+  const from = safeTotalElements === 0 ? 0 : safePageIndex * safePageSize + 1;
+  const to =
+    safeTotalElements === 0
+      ? 0
+      : Math.min(safePageIndex * safePageSize + data.length, safeTotalElements);
+
+  const canGoToPreviousPage = hasPaginationInfo && safePageIndex > 0;
+  const canGoToNextPage =
+    hasPaginationInfo && safePageIndex < (totalPages ?? 1) - 1;
 
   return (
     <div>
@@ -94,27 +126,27 @@ export function DataTable<TData, TValue>({
 
       <div className="mt-6 flex items-center justify-between px-2 text-on-surface-variant text-sm">
         <p>
-          Showing <span className="font-medium text-on-surface">1</span> to{' '}
+          Showing <span className="font-medium text-on-surface">{from}</span> to{' '}
+          <span className="font-medium text-on-surface">{to}</span> of{' '}
           <span className="font-medium text-on-surface">
-            {table.getRowModel().rows.length}
-          </span>{' '}
-          of{' '}
-          <span className="font-medium text-on-surface">
-            {table.getCoreRowModel().rows.length}
+            {safeTotalElements}
           </span>{' '}
           results
         </p>
         <div className="flex space-x-2">
           <Button
             type="button"
+            onClick={onPreviousPage}
             className="rounded-lg border-0 bg-transparent p-2 text-slate-400 transition-colors hover:bg-default-gray hover:text-white disabled:opacity-50"
-            disabled
+            disabled={!canGoToPreviousPage || isLoading}
           >
             Previous
           </Button>
           <Button
             type="button"
+            onClick={onNextPage}
             className="rounded-lg border-0 bg-transparent p-2 text-slate-400 transition-colors hover:bg-default-gray hover:text-white"
+            disabled={!canGoToNextPage || isLoading}
           >
             Next
           </Button>
