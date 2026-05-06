@@ -40,11 +40,18 @@ export function RegisterUserForm({
   const hasSpecialChar = /[^a-zA-Z0-9]/.test(currentPassword);
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+    <form
+      data-testid="register-user-form"
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="space-y-6"
+    >
       <div className="group space-y-2">
         <Input.Label htmlFor="name">Name</Input.Label>
 
-        <Input.Root withError={!!form.formState.errors.name}>
+        <Input.Root
+          data-testid="register-name-input"
+          withError={!!form.formState.errors.name}
+        >
           <Input.Prefix>
             <Mail className="h-5 w-5" />
           </Input.Prefix>
@@ -62,7 +69,10 @@ export function RegisterUserForm({
       <div className="group space-y-2">
         <Input.Label htmlFor="email">Email address</Input.Label>
 
-        <Input.Root withError={!!form.formState.errors.email}>
+        <Input.Root
+          data-testid="register-email-input"
+          withError={!!form.formState.errors.email}
+        >
           <Input.Prefix>
             <Mail className="h-5 w-5" />
           </Input.Prefix>
@@ -80,7 +90,10 @@ export function RegisterUserForm({
       <div className="group space-y-2">
         <Input.Label htmlFor="password">Password</Input.Label>
 
-        <Input.Root withError={!!form.formState.errors.password}>
+        <Input.Root
+          data-testid="register-password-input"
+          withError={!!form.formState.errors.password}
+        >
           <Input.Prefix>
             <Lock className="h-5 w-5" />
           </Input.Prefix>
@@ -94,6 +107,7 @@ export function RegisterUserForm({
           <Button
             variant="ghost"
             type="button"
+            data-testid="register-toggle-password-visibility"
             className="absolute right-2 cursor-pointer p-0 text-outline transition-colors hover:text-white"
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
           >
@@ -146,7 +160,11 @@ export function RegisterUserForm({
         </ErrorField>
       )}
 
-      <Button className="mx-auto w-full" disabled={isPending}>
+      <Button
+        data-testid="register-button"
+        className="mx-auto w-full"
+        disabled={isPending}
+      >
         {isPending ? <Loader className="animate-spin" /> : buttonText}
       </Button>
     </form>

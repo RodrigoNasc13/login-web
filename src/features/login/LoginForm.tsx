@@ -33,11 +33,18 @@ export function LoginForm() {
   }
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit(handleLogin)}>
+    <form
+      data-testid="login-form"
+      className="space-y-6"
+      onSubmit={handleSubmit(handleLogin)}
+    >
       <div className="group space-y-2">
         <Input.Label htmlFor="email">Email address</Input.Label>
 
-        <Input.Root withError={!!formState.errors.email}>
+        <Input.Root
+          data-testid="login-email-input"
+          withError={!!formState.errors.email}
+        >
           <Input.Prefix>
             <Mail className="h-5 w-5" />
           </Input.Prefix>
@@ -55,7 +62,10 @@ export function LoginForm() {
       <div className="group space-y-2">
         <Input.Label htmlFor="password">Password</Input.Label>
 
-        <Input.Root withError={!!formState.errors.password}>
+        <Input.Root
+          data-testid="login-password-input"
+          withError={!!formState.errors.password}
+        >
           <Input.Prefix>
             <Lock className="h-5 w-5" />
           </Input.Prefix>
@@ -67,6 +77,7 @@ export function LoginForm() {
             {...register('password')}
           />
           <Button
+            data-testid="login-toggle-password-visibility"
             variant="ghost"
             type="button"
             className="absolute right-2 cursor-pointer p-0 pr-2 text-outline transition-colors hover:text-white"
@@ -90,7 +101,11 @@ export function LoginForm() {
         </ErrorField>
       )}
 
-      <Button className="mx-auto w-full" disabled={isPending}>
+      <Button
+        data-testid="login-button"
+        className="mx-auto w-full"
+        disabled={isPending}
+      >
         {isPending ? <Loader className="animate-spin" /> : 'Authorize Access'}
       </Button>
     </form>
